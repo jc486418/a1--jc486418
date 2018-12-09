@@ -118,8 +118,5 @@ def complete_song(songs):
 def save_song(songs):
     print("{} songs saved to songs.csv".format(len(songs)))
     print("Have a nice day :)")
-    save_file=open("songs.csv", 'r+')
-    for i,song in enumerate(songs):
-     save_file.write(song[])
 main()
 
