@@ -18,7 +18,7 @@ def main():
 def show_menu():
     print("Menu: ")
     print("L - List songs")
-    print("A - Add new song")
+    print("A - Add new xsong")
     print("C - Complete a song")
     print("Q - Quit")
 
@@ -88,26 +88,38 @@ def add_song(songs):
     songs.append(add)
     print(songs)
 def complete_song(songs):
-    while True:
-        try:
-            numbersong=int(input("Enter the number of a song to mark as learned: "))
-        except ValueError:
-            print("Invalid input; enter a valid number")
-        else:
-            break
-    while numbersong<0:
-        print("Number must be >= 0")
-        numbersong = int(input("Enter the number of a song to mark as learned: "))
-
-    if songs[numbersong][3] == "n":
-        print (songs[numbersong][3])
-        print("You have already learned {}".format(songs[numbersong][0]))
+    count_end=0
+    for i, song in enumerate(songs):
+        if song[3]=="n":
+            count_end+=1
+    if count_end >= len(songs):
+        print("No more songs to learn!")
     else:
-        songs[numbersong][3] = "n"
-        print("{} by {} learnd".format(songs[numbersong][0], songs[numbersong][1]))
+
+        while True:
+            try:
+                numbersong=int(input("Enter the number of a song to mark as learned: "))
+            except ValueError:
+                print("Invalid input; enter a valid number")
+            else:
+                break
+        while numbersong<0:
+                    print("Number must be >= 0")
+                    numbersong = int(input("Enter the number of a song to mark as learned: "))
+
+
+        if songs[numbersong][3] == "n":
+                        print (songs[numbersong][3])
+                        print("You have already learned {}".format(songs[numbersong][0]))
+        else:
+                        songs[numbersong][3] = "n"
+                        print("{} by {} learnd".format(songs[numbersong][0], songs[numbersong][1]))
+
 def save_song(songs):
     print("{} songs saved to songs.csv".format(len(songs)))
     print("Have a nice day :)")
-
+    save_file=open("songs.csv", 'r+')
+    for i,song in enumerate(songs):
+     save_file.write(song[])
 main()
 
